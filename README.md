@@ -44,4 +44,4 @@ Fórum Hub é um projeto desenvolvido como um desafio para os estudantes do prog
 
 ## Autor
 
-Tiago Lima e Alura
+Tiago Lima Pimenta
