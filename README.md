@@ -2,7 +2,7 @@
 
 ## Descrição
 
-Fórum Hub é um projeto desenvolvido como um desafio para os estudantes do programa ONE (Oracle Next Education). Este projeto visa replicar a funcionalidade do Fórum da Alura, onde os usuários podem trocar conhecimentos, criar tópicos para solucionar dúvidas e ajudar outros usuários com suas perguntas. O Fórum da Alura é um espaço colaborativo que promove o aprendizado e a prática através da interação entre os membros da comunidade.
+Fórum Hub é um projeto desenvolvido como um desafio para graduação no programa ONE (Oracle Next Education). Este projeto visa replicar a funcionalidade do Fórum da Alura, onde os usuários podem trocar conhecimentos, criar tópicos para solucionar dúvidas e ajudar outros usuários com suas perguntas.
 
 ## Funcionalidades
 
