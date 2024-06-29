@@ -18,8 +18,9 @@ public class UsuarioController {
     @PostMapping
     @Transactional
     public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroUsuario dados, UriComponentsBuilder uriBuilder) {
-        var usuario = new Usuario(dados);
 
+
+        var usuario = new Usuario(dados);
         repository.save(usuario);
 
         var uri = uriBuilder.path("usuarios/{id}").build(usuario.getId());
