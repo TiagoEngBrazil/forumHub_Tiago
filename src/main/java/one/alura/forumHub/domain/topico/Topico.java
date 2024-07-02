@@ -5,8 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import one.alura.forumHub.domain.curso.Curso;
-import one.alura.forumHub.domain.usuario.Usuario;
+import one.alura.forumHub.domain.resposta.Resposta;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -22,18 +21,32 @@ public class Topico {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
+    private String titulo;
+    private String mensagem;
+    private LocalDateTime dataCriacao;
+    private String status;
+    private String autor;
+    private String curso;
 
-    String titulo;
-
-    String mensagem;
-
-    LocalDateTime dataCriacao = LocalDateTime.now();
-
-    Usuario autor;
-
-    Curso curso;
-
+    @OneToMany(mappedBy = "topico", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Resposta> respostas = new ArrayList<>();
 
+    public Topico(DadosCadastroTopico dados, String usuarioLogado) {
+        this.titulo = dados.titulo();
+        this.mensagem = dados.mensagem();
+        this.dataCriacao = LocalDateTime.now();
+        this.status = "NAO_RESPONDIDO";
+        this.autor = usuarioLogado;
+        this.curso = dados.curso();
+    }
+
+    public void atualizarInformacoes(DadosAtualizacaoTopico dados) {
+        if (dados.titulo() != null) {
+            this.titulo = dados.titulo();
+        }
+        if (dados.mensagem() != null) {
+            this.mensagem = dados.mensagem();
+        }
+    }
 }
