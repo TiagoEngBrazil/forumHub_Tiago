@@ -16,13 +16,11 @@ public class DadosDetalhamentoResposta {
     private String mensagem;
     private LocalDateTime dataCriacao;
     private Boolean solucao;
-    private DadosDetalhamentoTopico dadosDetalhamentoTopico;
 
     public DadosDetalhamentoResposta(Resposta resposta) {
         this.id = resposta.getId();
         this.mensagem = resposta.getMensagem();
         this.dataCriacao = resposta.getDataCriacao();
         this.solucao = resposta.getSolucao();
-        this.dadosDetalhamentoTopico = new DadosDetalhamentoTopico(resposta.getTopico());
     }
 }

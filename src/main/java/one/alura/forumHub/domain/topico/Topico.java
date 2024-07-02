@@ -1,5 +1,6 @@
 package one.alura.forumHub.domain.topico;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -29,7 +30,8 @@ public class Topico {
     private String autor;
     private String curso;
 
-    @OneToMany(mappedBy = "topico", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "topico", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Resposta> respostas = new ArrayList<>();
 
     public Topico(DadosCadastroTopico dados, String usuarioLogado) {

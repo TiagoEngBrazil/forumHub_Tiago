@@ -24,10 +24,17 @@ public class SecurityFilter extends OncePerRequestFilter {
     private AutenticacaoRepository repository;
 
     @Override
-    protected void doFilterInternal(@NotNull HttpServletRequest request, @NotNull HttpServletResponse response,
-                                    @NotNull FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         var tokenJWT = recuperarToken(request);
 
+        // Verificar se a requisição é para o endpoint de cadastro de usuários
+        if (request.getRequestURI().endsWith("/usuarios") && request.getMethod().equals("POST")) {
+            // Permitir acesso livre sem autenticação para o endpoint de cadastro de usuários
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        // Lógica de autenticação normal para outros endpoints protegidos
         if (tokenJWT != null) {
             var subject = tokenService.getSubject(tokenJWT);
 
@@ -39,9 +46,10 @@ public class SecurityFilter extends OncePerRequestFilter {
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
 
-
         filterChain.doFilter(request, response);
     }
+
+
 
     private String recuperarToken(HttpServletRequest request) {
         var authorizationHeader = request.getHeader("Authorization");

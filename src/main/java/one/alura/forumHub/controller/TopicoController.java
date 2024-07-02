@@ -47,17 +47,28 @@ public class TopicoController {
         return ResponseEntity.ok(page);
     }
 
+//    @GetMapping("/{id}")
+//    public ResponseEntity detalhar(@PathVariable Long id) throws ValidacaoException {
+//        validadorId.validar(id);
+//        var topico=repository.getReferenceById(id);
+//        return ResponseEntity.ok(new DadosDetalhamentoTopico(topico));
+//    }
+
     @GetMapping("/{id}")
     public ResponseEntity detalhar(@PathVariable Long id) throws ValidacaoException {
-        validadorId.validar(id);
-        var topico=repository.getReferenceById(id);
+        validadorId.validar(id, repository);
+        var topico = repository.findById(id)
+                .orElseThrow(() -> new ValidacaoException("Tópico não encontrado"));
+
+        topico.getRespostas().size();
+
         return ResponseEntity.ok(new DadosDetalhamentoTopico(topico));
     }
 
     @PutMapping("/{id}")
     @Transactional
     public ResponseEntity atualizar(@PathVariable Long id, @RequestBody @Valid DadosAtualizacaoTopico dados, Authentication authentication) throws ValidacaoException {
-        validadorId.validar(id);
+        validadorId.validar(id, repository);
         var topico = repository.getReferenceById(id);
 
         if (!topico.getAutor().equals(authentication.getName())) {
@@ -71,7 +82,7 @@ public class TopicoController {
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity excluir(@PathVariable Long id, Authentication authentication) throws ValidacaoException {
-        validadorId.validar(id);
+        validadorId.validar(id, repository);
         var topico = repository.findById(id).orElse(null);
 
         if (topico == null || !topico.getAutor().equals(authentication.getName())) {
