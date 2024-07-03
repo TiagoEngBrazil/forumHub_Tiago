@@ -4,7 +4,9 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import one.alura.forumHub.domain.usuario.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -30,8 +32,12 @@ public class UsuarioController {
 
     @PutMapping
     @Transactional
-    public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizacaoUsuario dados) {
+    public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizacaoUsuario dados, Authentication authentication) {
         var usuario = repository.getReferenceById(dados.id());
+
+        if (usuario == null || !usuario.getEmail().equals(authentication.getName())) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
 
         usuario.atualizarInformacoes(dados);
 
@@ -40,8 +46,12 @@ public class UsuarioController {
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity excluir(@PathVariable Long id) {
+    public ResponseEntity excluir(@PathVariable Long id, Authentication authentication) {
         var usuario = repository.getReferenceById(id);
+
+        if (usuario == null || !usuario.getEmail().equals(authentication.getName())) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
 
         usuario.excluir();
 
