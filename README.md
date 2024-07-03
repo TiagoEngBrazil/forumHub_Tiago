@@ -10,6 +10,10 @@ Fórum Hub é um projeto desenvolvido como um desafio para graduação no progra
 - **Listagem de Tópicos:** Possibilidade de listar todos os tópicos cadastrados no banco de dados.
 - **Visualização de Tópico:** Visualizar os detalhes de um tópico específico.
 - **Autenticação e Autorização:** Somente usuários autenticados podem criar, editar ou deletar tópicos, garantindo a segurança e integridade dos dados.
+- **Criação de Respostas:** Usuários cadastrados podem criar novas respostas para tópicos contendo uma mensagem.
+- **Listagem de Respostas:** Possibilidade de listar todos as respostas de tópicos cadastrados no banco de dados.
+- **Visualização de Tópico:** Visualizar os detalhes de uma resposta específico.
+- **Autenticação e Autorização:** Somente usuários autenticados podem criar, editar ou deletar respostas, garantindo a segurança e integridade dos dados.
 - **Registro de Usuários:** Registro de novos usuários com geração de token JWT para autenticação.
 
 ## Requisitos de Negócio
