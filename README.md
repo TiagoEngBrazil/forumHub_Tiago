@@ -34,13 +34,20 @@ Fórum Hub é um projeto desenvolvido como um desafio para graduação no progra
 
 ## Endpoints Principais
 
-- **Listar Tópicos:** `GET /topicos`
-- **Visualizar Tópico:** `GET /topicos/{id}`
+- **Registrar Usuário:** `POST /usuarios`
+- **Atualizar Usuário:** `POST /usuarios`
+- **Registrar Usuário:** `DELETE /usuarios`
+- **Autenticar Usuário:** `POST /login`
 - **Criar Tópico:** `POST /topicos`
+- **Listar Tópicos:** `GET /topicos`
+- **Visualizar um Tópico Específico:** `GET /topicos/{id}`
 - **Editar Tópico:** `PUT /topicos/{id}`
 - **Deletar Tópico:** `DELETE /topicos/{id}`
-- **Registrar Usuário:** `POST /usuarios`
-- **Autenticar Usuário:** `POST /auth`
+- **Criar Resposta:** `POST /topicos/{id}/respostas`
+- **Listar Respostas de um Tópico:** `GET /topicos{id}/respostas`
+- **Visualizar Respostas de um Tópico Específico:** `GET /topicos/{id}/respostas/{id2}`
+- **Editar Resposta:** `PUT /topicos/{id}/respostas/{id2}`
+- **Deletar Resposta:** `DELETE /topicos/{id}/respostas/{id2}`
 
 ## Autor
 
