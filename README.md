@@ -14,9 +14,9 @@ Fórum Hub é um projeto desenvolvido como um desafio para graduação no progra
 
 ## Requisitos de Negócio
 
-1. **Usuários Cadastrados:** Apenas usuários registrados podem criar, editar ou deletar tópicos.
+1. **Usuários Cadastrados:** Apenas usuários registrados podem criar, editar ou deletar tópicos e respostas.
 2. **Autenticação:** Utilização de tokens Bearer para autenticação nas requisições.
-3. **Segurança:** Apenas o autor do tópico pode editá-lo ou deletá-lo.
+3. **Segurança:** Apenas o autor do tópico ou resposta pode editá-lo ou deletá-lo.
 4. **Estrutura do Tópico:** Cada tópico deve ter um título, uma mensagem, pertencer a um curso e ter uma data de criação gerada automaticamente.
 
 ## Tecnologias Utilizadas
